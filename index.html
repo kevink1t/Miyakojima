@@ -375,9 +375,128 @@
       .plan-card { padding: 18px 14px; }
       .day-block { grid-template-columns: 68px 1fr; }
     }
+
+    /* ===== HAMBURGER MENU ===== */
+    .nav-toggle {
+      position: fixed;
+      top: 16px; right: 16px;
+      z-index: 1000;
+      width: 48px; height: 48px;
+      background: var(--ocean);
+      border: none; border-radius: 12px;
+      cursor: pointer;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center; gap: 5px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      transition: background 0.2s;
+    }
+    .nav-toggle:hover { background: #023E8A; }
+    .nav-toggle span {
+      display: block;
+      width: 22px; height: 2px;
+      background: white; border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+      transform-origin: center;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 900;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: auto; }
+
+    .nav-panel {
+      position: fixed;
+      top: 0; right: 0;
+      width: 280px; height: 100%;
+      background: white;
+      z-index: 950;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      overflow-y: auto;
+      box-shadow: -4px 0 32px rgba(0,0,0,0.18);
+      display: flex; flex-direction: column;
+    }
+    .nav-panel.open { transform: translateX(0); }
+
+    .nav-panel-header {
+      background: linear-gradient(135deg, #023E8A 0%, #0077B6 100%);
+      color: white;
+      padding: 20px 20px 16px;
+      flex-shrink: 0;
+    }
+    .nav-panel-header h2 {
+      font-size: 0.95rem; font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .nav-panel-header p { font-size: 0.75rem; opacity: 0.8; }
+
+    .nav-list { list-style: none; padding: 10px 0; flex: 1; }
+    .nav-list li a {
+      display: flex; align-items: center; gap: 12px;
+      padding: 13px 20px;
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 0.88rem; font-weight: 600;
+      border-left: 3px solid transparent;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .nav-list li a:hover {
+      background: #EEF6FF;
+      border-left-color: var(--ocean);
+      color: var(--ocean);
+    }
+    .nav-list li a .nav-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .nav-list .nav-divider {
+      height: 1px; background: #EEF0F4;
+      margin: 6px 20px;
+    }
+    .nav-panel-footer {
+      padding: 14px 20px;
+      font-size: 0.72rem; color: var(--gray);
+      border-top: 1px solid #EEF0F4;
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
+
+<!-- HAMBURGER BUTTON -->
+<button class="nav-toggle" id="navToggle" aria-label="メニューを開く">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- OVERLAY -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- SIDE PANEL -->
+<nav class="nav-panel" id="navPanel">
+  <div class="nav-panel-header">
+    <h2>🏝️ 宮古島旅行プラン</h2>
+    <p>セクションに移動する</p>
+  </div>
+  <ul class="nav-list">
+    <li><a href="#section-plan" onclick="closeNav()"><span class="nav-icon">✈️</span>移動・旅費プラン</a></li>
+    <li><a href="#section-access" onclick="closeNav()"><span class="nav-icon">🚗</span>空港アクセス</a></li>
+    <li><a href="#section-airplane" onclick="closeNav()"><span class="nav-icon">🎒</span>機内グッズ（双子）</a></li>
+    <div class="nav-divider"></div>
+    <li><a href="#section-spots" onclick="closeNav()"><span class="nav-icon">🌺</span>観光スポット</a></li>
+    <li><a href="#section-itinerary" onclick="closeNav()"><span class="nav-icon">📅</span>5日間旅程プラン</a></li>
+    <div class="nav-divider"></div>
+    <li><a href="#section-rental" onclick="closeNav()"><span class="nav-icon">🚙</span>レンタカー比較</a></li>
+    <li><a href="#section-food" onclick="closeNav()"><span class="nav-icon">🍽️</span>食事ガイド</a></li>
+    <div class="nav-divider"></div>
+    <li><a href="#section-tips" onclick="closeNav()"><span class="nav-icon">💡</span>準備・注意点</a></li>
+    <li><a href="#section-checklist" onclick="closeNav()"><span class="nav-icon">✅</span>持ち物チェックリスト</a></li>
+  </ul>
+  <div class="nav-panel-footer">🏝️ 宮古島旅行プラン 2026 | Keiichi ファミリー</div>
+</nav>
 
 <!-- HERO -->
 <div class="hero">
@@ -396,7 +515,7 @@
 <div class="container">
 
   <!-- NOTICE -->
-  <div class="section">
+  <div class="section" id="section-plan">
     <div class="notice">
       <strong>⚠️ 料金について</strong>
       掲載の費用はすべて概算（目安）です。実際の料金は予約時期・便・空席状況により大きく変動します。
@@ -480,7 +599,7 @@
   </div>
 
   <!-- AIRPORT ACCESS -->
-  <div class="section">
+  <div class="section" id="section-access">
     <div class="section-title">🚗 空港までのアクセス（南流山 → 羽田空港）</div>
     <p style="font-size:0.87rem; color:var(--gray); margin-bottom:20px;">車＋空港駐車場で決定。行き・帰りの注意点をまとめました。</p>
 
@@ -629,7 +748,7 @@
   </div>
 
   <!-- AIRPLANE KIDS ITEMS -->
-  <div class="section">
+  <div class="section" id="section-airplane">
     <div class="section-title">✈️ 機内での双子の暇つぶしグッズ</div>
     <p style="font-size:0.87rem; color:var(--gray); margin-bottom:20px;">羽田→宮古島は直行約3時間。4歳の双子が飽きずに過ごせるアイテムを厳選しました。</p>
 
@@ -683,7 +802,7 @@
   </div>
 
   <!-- TOURIST SPOTS -->
-  <div class="section">
+  <div class="section" id="section-spots">
     <div class="section-title">🌺 宮古島の観光スポット</div>
     <p style="font-size:0.87rem; color:var(--gray); margin-bottom:20px;">子連れファミリーでも楽しめるスポットを厳選しました。</p>
 
@@ -776,7 +895,7 @@
   </div>
 
   <!-- ITINERARY -->
-  <div class="section">
+  <div class="section" id="section-itinerary">
     <div class="section-title">📅 推奨 5日間旅程プラン</div>
     <p style="font-size:0.87rem; color:var(--gray); margin-bottom:24px;">レンタカー利用。子連れ（4歳）に無理のない、ゆったりスケジュールです。</p>
 
@@ -1075,7 +1194,7 @@
   </div>
 
   <!-- RENTAL CAR -->
-  <div class="section">
+  <div class="section" id="section-rental">
     <div class="section-title">🚗 レンタカー会社比較</div>
     <p style="font-size:0.87rem; color:var(--gray); margin-bottom:20px;">チャイルドシート2台が必要なため、旅行日程が決まり次第すぐに予約してください。</p>
 
@@ -1152,7 +1271,7 @@
   </div>
 
   <!-- FOOD GUIDE -->
-  <div class="section">
+  <div class="section" id="section-food">
     <div class="section-title">🍽️ 食事ガイド（昼・夕）</div>
     <p style="font-size:0.87rem; color:var(--gray); margin-bottom:20px;">朝食はヒルトン朝食を利用。昼と夜の参考にどうぞ。</p>
 
@@ -1293,7 +1412,7 @@
   </div>
 
   <!-- TIPS -->
-  <div class="section">
+  <div class="section" id="section-tips">
     <div class="section-title">💡 旅行の準備・注意点</div>
     <div class="tips-grid">
       <div class="tip-card">
@@ -1340,7 +1459,7 @@
   </div>
 
   <!-- CHECKLIST -->
-  <div class="section">
+  <div class="section" id="section-checklist">
     <div class="section-title">✅ 持ち物チェックリスト（4歳双子連れ）</div>
     <div style="margin-bottom:20px;">
       <span class="checklist-counter" id="checklist-counter">0 / 0 チェック済み</span>
@@ -1415,6 +1534,41 @@
 </footer>
 
 <script>
+  // ===== HAMBURGER MENU =====
+  const navToggle  = document.getElementById('navToggle');
+  const navPanel   = document.getElementById('navPanel');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function openNav() {
+    navToggle.classList.add('open');
+    navPanel.classList.add('open');
+    navOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    navToggle.classList.remove('open');
+    navPanel.classList.remove('open');
+    navOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  navToggle.addEventListener('click', () => {
+    navPanel.classList.contains('open') ? closeNav() : openNav();
+  });
+  navOverlay.addEventListener('click', closeNav);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+  // smooth scroll for anchor links
+  document.querySelectorAll('.nav-list a').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        closeNav();
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+      }
+    });
+  });
+
   function toggleCheck(item) {
     const checkbox = item.querySelector('input[type="checkbox"]');
     checkbox.checked = !checkbox.checked;
