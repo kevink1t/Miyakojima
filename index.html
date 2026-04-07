@@ -82,36 +82,10 @@
     }
     .notice strong { display: block; margin-bottom: 4px; }
 
-    /* ===== PLAN TABS ===== */
-    .tab-nav {
-      display: flex; gap: 0;
-      border-radius: var(--radius) var(--radius) 0 0;
-      overflow: hidden;
-      border: 2px solid var(--ocean);
-      border-bottom: none;
-    }
-    .tab-btn {
-      flex: 1; padding: 13px 8px;
-      background: #E6F4FF; color: var(--ocean);
-      border: none; cursor: pointer;
-      font-size: 0.88rem; font-weight: 700;
-      transition: all 0.2s;
-      border-right: 1px solid var(--ocean);
-      font-family: inherit;
-    }
-    .tab-btn:last-child { border-right: none; }
-    .tab-btn.active { background: var(--ocean); color: white; }
-    .tab-btn:hover:not(.active) { background: #C8E6FF; }
-    .tab-btn .plan-label { font-size: 0.7rem; display: block; opacity: 0.8; margin-top: 2px; }
-
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
     .plan-card {
       background: white;
       border: 2px solid var(--ocean);
-      border-top: none;
-      border-radius: 0 0 var(--radius) var(--radius);
+      border-radius: var(--radius);
       padding: 28px;
       box-shadow: var(--card-shadow);
     }
@@ -430,277 +404,78 @@
       出発地は<strong>東京（羽田/成田）</strong>を想定しています。
     </div>
 
-    <!-- PLAN TABS -->
-    <div class="section-title">✈️ 移動・旅費プラン比較（3案）</div>
-    <p style="font-size:0.87rem; color:var(--gray); margin-bottom:20px;">各プランのタブを切り替えて内容を確認してください。</p>
+    <!-- PLAN B (確定) -->
+    <div class="section-title">✈️ 移動・旅費プラン</div>
 
-    <div class="tab-nav">
-      <button class="tab-btn" onclick="switchTab(0)">
-        💰 プランA
-        <span class="plan-label">LCC乗り継ぎ × 6月</span>
-      </button>
-      <button class="tab-btn active" onclick="switchTab(1)">
-        ✈️ プランB
-        <span class="plan-label">ANA直行 × 6/4〜6/9 ✅決定</span>
-      </button>
-      <button class="tab-btn" onclick="switchTab(2)">
-        ☀️ プランC
-        <span class="plan-label">ANA直行 × 7月</span>
-      </button>
-    </div>
-
-    <!-- PLAN A -->
-    <div class="tab-content" id="tab-0">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-icon">💰</div>
-          <div>
-            <div class="plan-title">プランA：LCC乗り継ぎ × 6月初旬平日<span class="recommend-tag">最安値</span></div>
-            <div class="plan-desc">Peach / Jetstar で那覇へ飛び、那覇で乗り継いで宮古島へ。最もコストを抑えたい方向け。</div>
-          </div>
-        </div>
-
-        <table class="cost-table">
-          <thead><tr><th>費目</th><th>内訳</th><th>金額（目安）</th></tr></thead>
-          <tbody>
-            <tr>
-              <td>✈️ 航空券（往復）</td>
-              <td>
-                HND/NRT→OKA（Peach等LCC）大人2名＋子供2名×往復<br>
-                <small style="color:var(--gray)">早割・平日便、6月初旬（6/2〜6/6目安）</small><br>
-                OKA→MMY（ANA/琉球エアー）大人2名＋子供2名×往復
-              </td>
-              <td>約 ¥115,000</td>
-            </tr>
-            <tr>
-              <td>🚗 レンタカー</td>
-              <td>コンパクトカー5日間（チャイルドシート2台込み）</td>
-              <td>約 ¥12,000</td>
-            </tr>
-            <tr>
-              <td>⛽ ガソリン</td>
-              <td>宮古島は面積小さめ・全行程で概算</td>
-              <td>約 ¥3,000</td>
-            </tr>
-            <tr>
-              <td>🍱 食費（昼＋夕）</td>
-              <td>コンビニ・地元食堂中心 / 昼¥700/人・夕¥1,200/人目安</td>
-              <td>約 ¥38,000</td>
-            </tr>
-            <tr class="cost-total">
-              <td colspan="2"><strong>合計（目安）</strong></td>
-              <td><strong>約 ¥168,000</strong></td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="cost-note">※ LCCは手荷物・座席指定が別途有料になることが多いです。預け荷物（ファミリー旅行は必須）の追加料金として+¥8,000〜¥15,000程度が必要になる場合があります。</p>
-
-        <div class="pros-cons">
-          <div class="pros">
-            <h4>👍 メリット</h4>
-            <ul>
-              <li>4プランの中で最も安い</li>
-              <li>6月初旬は梅雨でも晴れ間多く、人が少ない</li>
-              <li>LCCは直前予約でも安い場合がある</li>
-              <li>那覇での乗り継ぎ時間に国際通りなど観光も可能</li>
-            </ul>
-          </div>
-          <div class="cons">
-            <h4>👎 デメリット</h4>
-            <ul>
-              <li>乗り継ぎあり（4歳の双子には負担になる可能性）</li>
-              <li>那覇乗り継ぎで合計移動時間が5〜6時間以上</li>
-              <li>LCCは欠航・遅延時のサポートが薄い</li>
-              <li>手荷物料金が別途かかり実質コストが上がりやすい</li>
-              <li>座席の指定・変更が有料</li>
-            </ul>
-          </div>
-        </div>
-
-        <div style="background:#F0F7FF; border-radius:10px; padding:14px; margin-top:16px; font-size:0.84rem;">
-          <strong>📌 このプランのポイント：</strong><br>
-          Peach（羽田→那覇）＋ ANA（那覇→宮古）の組み合わせが最も一般的。那覇での乗り継ぎ時間は3〜4時間程度を確保しておくと安心です。6月初旬は梅雨シーズンですが、沖縄の梅雨は雨が1日中続くわけでなく晴れ間が多い傾向があります。
+    <div class="plan-card">
+      <div class="plan-header">
+        <div class="plan-icon">✈️</div>
+        <div>
+          <div class="plan-title">ANA直行便 × 6月4日〜9日（4泊5日）<span class="recommend-tag" style="background:var(--coral)">✅ 決定</span></div>
+          <div class="plan-desc">羽田から宮古島へ直行便で約3時間。子連れには最もストレスフリーな移動。6月4日（木）出発・6月9日（火）帰着の4泊5日で確定。</div>
         </div>
       </div>
-    </div>
 
-    <!-- PLAN B -->
-    <div class="tab-content active" id="tab-1">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-icon">✈️</div>
-          <div>
-            <div class="plan-title">プランB：ANA直行便 × 6月4日〜9日（4泊5日）<span class="recommend-tag" style="background:var(--coral)">✅ 決定</span></div>
-            <div class="plan-desc">羽田から宮古島へ直行便で約3時間。子連れには最もストレスフリーな移動。6月4日（木）出発・6月9日（火）帰着の4泊5日で確定。</div>
-          </div>
-        </div>
-
-        <table class="cost-table">
-          <thead><tr><th>費目</th><th>内訳</th><th>金額（目安）</th></tr></thead>
-          <tbody>
-            <tr>
-              <td>✈️ 航空券（往復）</td>
-              <td>
-                HND→MMY ANA直行便 大人2名（早期割引運賃）<br>
-                <small style="color:var(--gray)">6月4日（木）出発 / 6月9日（火）帰着・4泊5日</small><br>
-                HND→MMY ANA直行便 小児2名（小児運賃 大人の約75%）
-              </td>
-              <td>約 ¥168,000</td>
-            </tr>
-            <tr>
-              <td>🚗 レンタカー</td>
-              <td>コンパクトカー5日間（チャイルドシート2台込み）</td>
-              <td>約 ¥12,000</td>
-            </tr>
-            <tr>
-              <td>⛽ ガソリン</td>
-              <td>宮古島内全行程</td>
-              <td>約 ¥3,000</td>
-            </tr>
-            <tr>
-              <td>🍽️ 食費（昼＋夕）</td>
-              <td>地元レストラン＋コンビニ混在 / 昼¥900/人・夕¥1,800/人目安</td>
-              <td>約 ¥54,000</td>
-            </tr>
-            <tr class="cost-total">
-              <td colspan="2"><strong>合計（目安）</strong></td>
-              <td><strong>約 ¥237,000</strong></td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="cost-note">※ ANAのスーパーバリュー45（45日前予約）や早割28（28日前予約）を利用すると通常料金より40〜60%安くなります。予約は早めが吉。小児運賃は大人運賃の約75%が目安です。</p>
-
-        <div class="pros-cons">
-          <div class="pros">
-            <h4>👍 メリット</h4>
-            <ul>
-              <li>乗り継ぎなし・直行で約3時間</li>
-              <li>4歳の双子に優しいシンプルな移動</li>
-              <li>ANA/JALは手荷物無料・座席指定しやすい</li>
-              <li>6月初旬は人が少なく観光地も空いている</li>
-              <li>遅延・欠航時のサポートが充実</li>
-            </ul>
-          </div>
-          <div class="cons">
-            <h4>👎 デメリット</h4>
-            <ul>
-              <li>プランAより航空券代が高い</li>
-              <li>直行便は本数が少なく時間帯が限られる</li>
-              <li>6月は梅雨（ただし離島はさほど長雨にならない）</li>
-              <li>早期予約が必要で直前だと高い</li>
-            </ul>
-          </div>
-        </div>
-
-        <div style="background:#EAFAF2; border-radius:10px; padding:14px; margin-top:16px; font-size:0.84rem;">
-          <strong>📌 このプランのポイント：</strong><br>
-          羽田→宮古（MMY）の直行便はANAが運航しています。6月は観光客が少なく、ビーチや人気スポットをゆったり楽しめるのが最大の魅力。子連れには乗り継ぎなしの快適な移動が一番のメリットで、コストと快適さのバランスが最も良いプランです。
-        </div>
-      </div>
-    </div>
-
-    <!-- PLAN C -->
-    <div class="tab-content" id="tab-2">
-      <div class="plan-card">
-        <div class="plan-header">
-          <div class="plan-icon">☀️</div>
-          <div>
-            <div class="plan-title">プランC：ANA直行便 × 7月初旬平日</div>
-            <div class="plan-desc">梅雨明け後の沖縄は快晴続き。最高の海と天気を満喫できるが、夏需要で価格は上がる。</div>
-          </div>
-        </div>
-
-        <table class="cost-table">
-          <thead><tr><th>費目</th><th>内訳</th><th>金額（目安）</th></tr></thead>
-          <tbody>
-            <tr>
-              <td>✈️ 航空券（往復）</td>
-              <td>
-                HND→MMY ANA直行便 大人2名<br>
-                <small style="color:var(--gray)">7月初旬平日便・早期割引利用</small><br>
-                HND→MMY ANA直行便 小児2名
-              </td>
-              <td>約 ¥214,000</td>
-            </tr>
-            <tr>
-              <td>🚗 レンタカー</td>
-              <td>コンパクトカー5日間（チャイルドシート2台込み）夏需要で割高</td>
-              <td>約 ¥16,000</td>
-            </tr>
-            <tr>
-              <td>⛽ ガソリン</td>
-              <td>宮古島内全行程</td>
-              <td>約 ¥3,000</td>
-            </tr>
-            <tr>
-              <td>🍽️ 食費（昼＋夕）</td>
-              <td>地元レストラン中心 / 昼¥1,000/人・夕¥2,000/人目安</td>
-              <td>約 ¥60,000</td>
-            </tr>
-            <tr class="cost-total">
-              <td colspan="2"><strong>合計（目安）</strong></td>
-              <td><strong>約 ¥293,000</strong></td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="cost-note">※ 7月は夏休みシーズンに入るため、7/15以降は価格が大幅に跳ね上がります。7/1〜7/13の平日に設定するのが鍵です。梅雨明けは例年6月下旬〜7月上旬ですが、確認が必要です。</p>
-
-        <div class="pros-cons">
-          <div class="pros">
-            <h4>👍 メリット</h4>
-            <ul>
-              <li>梅雨明け後の快晴・青い海が最高</li>
-              <li>海水温が高く子供も快適に泳げる</li>
-              <li>シュノーケリングの視界が抜群</li>
-              <li>夏休み前なのでそこまで混まない（平日限定）</li>
-            </ul>
-          </div>
-          <div class="cons">
-            <h4>👎 デメリット</h4>
-            <ul>
-              <li>航空券・レンタカーが最も高い</li>
-              <li>気温35℃超・4歳の子供には酷暑</li>
-              <li>日焼けが強烈（日焼け対策必須）</li>
-              <li>観光地が混み始め、レストランも繁忙期</li>
-              <li>ハブクラゲの出現シーズン（海水浴注意）</li>
-            </ul>
-          </div>
-        </div>
-
-        <div style="background:#FFF8EE; border-radius:10px; padding:14px; margin-top:16px; font-size:0.84rem; border: 1px solid #FFCA2C;">
-          <strong>⚠️ 7月の注意点：</strong><br>
-          7月の宮古島は気温35℃以上になることも多く、4歳の双子には熱中症対策が必須です。観光は午前中に集中させ、お昼は涼しい場所（ホテルプール・室内スポット）で過ごすなど工夫が必要です。また、7月からハブクラゲが出る海岸もあるため、ビーチ選びに注意が必要です。
-        </div>
-      </div>
-    </div>
-
-    <!-- PLAN COMPARISON -->
-    <div style="background:white; border-radius:var(--radius); padding:20px; box-shadow:var(--card-shadow); margin-top:20px;">
-      <h3 style="font-size:1rem; font-weight:800; color:var(--ocean); margin-bottom:14px;">📊 3プラン 費用サマリー比較</h3>
       <table class="cost-table">
-        <thead><tr><th>プラン</th><th>時期・方法</th><th>おすすめ度</th><th>合計目安</th></tr></thead>
+        <thead><tr><th>費目</th><th>内訳</th><th>金額（目安）</th></tr></thead>
         <tbody>
           <tr>
-            <td>💰 プランA</td>
-            <td>LCC乗り継ぎ × 6月初旬平日</td>
-            <td>節約重視の方に</td>
+            <td>✈️ 航空券（往復）</td>
+            <td>
+              HND→MMY ANA直行便 大人2名（早期割引運賃）<br>
+              <small style="color:var(--gray)">6月4日（木）出発 / 6月9日（火）帰着・4泊5日</small><br>
+              HND→MMY ANA直行便 小児2名（小児運賃 大人の約75%）
+            </td>
             <td>約 ¥168,000</td>
           </tr>
-          <tr style="background:#EAFAF2; font-weight:700;">
-            <td>✈️ プランB</td>
-            <td>ANA直行 × 6月4日〜6月9日（4泊5日）</td>
-            <td>✅ <span style="color:var(--coral)">決定！</span></td>
-            <td>約 ¥237,000</td>
+          <tr>
+            <td>🚗 レンタカー</td>
+            <td>コンパクトカー5日間（チャイルドシート2台込み）</td>
+            <td>約 ¥12,000</td>
           </tr>
           <tr>
-            <td>☀️ プランC</td>
-            <td>ANA直行 × 7月初旬平日</td>
-            <td>天気重視の方に</td>
-            <td>約 ¥293,000</td>
+            <td>⛽ ガソリン</td>
+            <td>宮古島内全行程</td>
+            <td>約 ¥3,000</td>
+          </tr>
+          <tr>
+            <td>🍽️ 食費（昼＋夕）</td>
+            <td>地元レストラン＋コンビニ混在 / 昼¥900/人・夕¥1,800/人目安</td>
+            <td>約 ¥54,000</td>
+          </tr>
+          <tr class="cost-total">
+            <td colspan="2"><strong>合計（目安）</strong></td>
+            <td><strong>約 ¥237,000</strong></td>
           </tr>
         </tbody>
       </table>
-      <p style="font-size:0.78rem; color:var(--gray); margin-top:8px;">※ ホテル代は特典利用で無料想定。食費は昼夕5日分を含む。ホテル朝食は費用に含まず。</p>
+      <p class="cost-note">※ ANAのスーパーバリュー45（45日前予約）や早割28（28日前予約）を利用すると通常料金より40〜60%安くなります。小児運賃は大人運賃の約75%が目安です。</p>
+
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>👍 メリット</h4>
+          <ul>
+            <li>乗り継ぎなし・直行で約3時間</li>
+            <li>4歳の双子に優しいシンプルな移動</li>
+            <li>手荷物無料・座席指定しやすい</li>
+            <li>6月初旬は人が少なく観光地も空いている</li>
+            <li>遅延・欠航時のサポートが充実</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>注意点</h4>
+          <ul>
+            <li>直行便は本数が少なく時間帯が限られる</li>
+            <li>6月は梅雨（ただし離島はさほど長雨にならない）</li>
+            <li>早期予約が必要で直前だと高い</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background:#EAFAF2; border-radius:10px; padding:14px; margin-top:16px; font-size:0.84rem;">
+        <strong>📌 ポイント：</strong><br>
+        羽田→宮古（MMY）の直行便はANAが運航。6月は観光客が少なく、ビーチや人気スポットをゆったり楽しめるのが最大の魅力です。ホテル代はヒルトンダイヤモンド会員特典（フリーナイト×2＋ポイント）で無料想定のため、航空券・レンタカー・食費が主なコストになります。
+      </div>
     </div>
   </div>
 
@@ -1389,15 +1164,6 @@
 </footer>
 
 <script>
-  function switchTab(index) {
-    document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-      btn.classList.toggle('active', i === index);
-    });
-    document.querySelectorAll('.tab-content').forEach((content, i) => {
-      content.classList.toggle('active', i === index);
-    });
-  }
-
   function toggleCheck(item) {
     const checkbox = item.querySelector('input[type="checkbox"]');
     checkbox.checked = !checkbox.checked;
